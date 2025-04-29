@@ -5,6 +5,7 @@ import { JSX } from 'react';
 
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
+import SvgSprite from '@/components/SvgSprite';
 
 export const metadata: Metadata = {
   title: 'What to Watch — Next Gen Online Cinema',
@@ -28,6 +29,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
+        <SvgSprite />
         <Header />
         <main>{children}</main>
         <Footer />
