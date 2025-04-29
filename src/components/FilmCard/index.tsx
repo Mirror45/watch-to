@@ -1,21 +1,26 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import { JSX } from 'react';
 
 interface FilmCardProps {
+  id: string;
   title: string;
   image: string;
 }
 
-export default function FilmCard({ title, image }: FilmCardProps): JSX.Element {
+export function FilmCard({ id, title, image }: FilmCardProps): JSX.Element {
   return (
     <article className="small-film-card catalog__films-card">
-      <div className="small-film-card__image">
-        <Image src={image} alt={title} width="280" height="175" />
-      </div>
+      <Link href={`/films/${id}`}>
+        <div className="small-film-card__image">
+          <Image src={image} alt={title} width={280} height={175} />
+        </div>
+      </Link>
+
       <h3 className="small-film-card__title">
-        <a className="small-film-card__link" href="film-page.html">
+        <Link href={`/films/${id}`} className="small-film-card__link">
           {title}
-        </a>
+        </Link>
       </h3>
     </article>
   );

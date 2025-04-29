@@ -1,26 +1,55 @@
 import { JSX } from 'react';
 
-import FilmCard from '@/components/FilmCard';
+import { FilmCard } from '../FilmCard';
 
 const films = [
   {
+    id: '1',
     title: 'Fantastic Beasts: The Crimes of Grindelwald',
     image: '/img/fantastic-beasts-the-crimes-of-grindelwald.jpg',
   },
-  { title: 'Bohemian Rhapsody', image: '/img/bohemian-rhapsody.jpg' },
-  { title: 'Macbeth', image: '/img/macbeth.jpg' },
-  { title: 'Aviator', image: '/img/aviator.jpg' },
-  { title: 'We need to talk about Kevin', image: '/img/we-need-to-talk-about-kevin.jpg' },
-  { title: 'What We Do in the Shadows', image: '/img/what-we-do-in-the-shadows.jpg' },
-  { title: 'Revenant', image: '/img/revenant.jpg' },
-  { title: 'Johnny English', image: '/img/johnny-english.jpg' },
+  {
+    id: '2',
+    title: 'Bohemian Rhapsody',
+    image: '/img/bohemian-rhapsody.jpg',
+  },
+  {
+    id: '3',
+    title: 'Macbeth',
+    image: '/img/macbeth.jpg',
+  },
+  {
+    id: '4',
+    title: 'Aviator',
+    image: '/img/aviator.jpg',
+  },
+  {
+    id: '5',
+    title: 'We need to talk about Kevin',
+    image: '/img/we-need-to-talk-about-kevin.jpg',
+  },
+  {
+    id: '6',
+    title: 'What We Do in the Shadows',
+    image: '/img/what-we-do-in-the-shadows.jpg',
+  },
+  {
+    id: '7',
+    title: 'Revenant',
+    image: '/img/revenant.jpg',
+  },
+  {
+    id: '8',
+    title: 'Johnny English',
+    image: '/img/johnny-english.jpg',
+  },
 ];
 
 export function FilmList(): JSX.Element {
   return (
     <div className="catalog__films-list">
       {films.map((film) => (
-        <FilmCard key={film.title} title={film.title} image={film.image} />
+        <FilmCard key={film.id} id={film.id} title={film.title} image={film.image} />
       ))}
     </div>
   );
