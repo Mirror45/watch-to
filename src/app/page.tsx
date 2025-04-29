@@ -3,6 +3,7 @@ import { JSX } from 'react';
 import { FilmList } from '@/components/FilmList';
 import { GenreList } from '@/components/GenreList';
 import { PromoFilm } from '@/components/PromoFilm';
+import { ShowMoreButton } from '@/components/ShowMoreButton';
 
 export default function HomePage(): JSX.Element {
   return (
@@ -15,6 +16,7 @@ export default function HomePage(): JSX.Element {
 
           <GenreList />
           <FilmList />
+          <ShowMoreButton />
         </section>
       </div>
     </>
