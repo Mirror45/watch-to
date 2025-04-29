@@ -1,6 +1,10 @@
 import './styles/main.css';
 
 import type { Metadata } from 'next';
+import { JSX } from 'react';
+
+import Footer from '@/components/Footer';
+import Header from '@/components/Header';
 
 export const metadata: Metadata = {
   title: 'What to Watch — Next Gen Online Cinema',
@@ -20,10 +24,14 @@ export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
-}>) {
+}>): JSX.Element {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <Header />
+        <main>{children}</main>
+        <Footer />
+      </body>
     </html>
   );
 }
