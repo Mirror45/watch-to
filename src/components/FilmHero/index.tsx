@@ -1,6 +1,11 @@
 import Image from 'next/image';
+import Link from 'next/link';
 
-export function FilmHero() {
+interface FilmHeroProps {
+  id: string;
+}
+
+export function FilmHero({ id }: FilmHeroProps) {
   return (
     <div className="film-card__hero">
       <div className="film-card__bg" style={{ height: '555px', width: '100%' }}>
@@ -38,9 +43,9 @@ export function FilmHero() {
               </svg>
               <span>My list</span>
             </button>
-            <a href="add-review.html" className="btn film-card__button">
+            <Link href={`/films/${id}/review`} className="btn film-card__button">
               Add review
-            </a>
+            </Link>
           </div>
         </div>
       </div>
