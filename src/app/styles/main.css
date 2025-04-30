@@ -726,8 +726,7 @@ main {
 .film-card__desc {
   -webkit-box-flex: 1;
       -ms-flex-positive: 1;
-          flex-grow: 1;
-  padding-top: 40px; }
+          flex-grow: 1; }
 
 .film-card__title {
   font-family: "Arial Black", sans-serif;
@@ -760,7 +759,7 @@ main {
     margin-right: 0; }
 
 .film-card__translate-top {
-  margin-top: -210px;
+  margin-top: -240px;
   position: relative;
   z-index: 2; }
 
