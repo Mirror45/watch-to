@@ -1,9 +1,19 @@
 import { JSX } from 'react';
 
+import { FilmHero } from '@/components/FilmHero';
+
 interface FilmPageProps {
   params: { id: string };
 }
 
-export default function FilmPage({ params }: FilmPageProps): JSX.Element {
-  return <h1>Film ID: {params.id}</h1>;
+export default function FilmPage({}: FilmPageProps): JSX.Element {
+  return (
+    <>
+      <section className="film-card film-card--full">
+        <FilmHero />
+      </section>
+
+      <div className="page-content"></div>
+    </>
+  );
 }
