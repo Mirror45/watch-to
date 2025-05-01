@@ -8,6 +8,7 @@ interface HeaderProps {
   showBreadcrumbs?: boolean;
   filmTitle?: string;
   filmId?: string;
+  showUserBlock?: boolean;
 }
 
 export default function Header({
@@ -15,6 +16,7 @@ export default function Header({
   showBreadcrumbs,
   filmTitle,
   filmId,
+  showUserBlock = true,
 }: HeaderProps): JSX.Element {
   return (
     <header className="page-header user-page__head">
@@ -44,7 +46,7 @@ export default function Header({
           </nav>
         )}
 
-        <UserBlock isAuth={false} />
+        {showUserBlock && <UserBlock isAuth={false} />}
       </div>
     </header>
   );

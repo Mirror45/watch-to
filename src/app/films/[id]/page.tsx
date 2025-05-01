@@ -2,6 +2,8 @@ import { JSX } from 'react';
 
 import { FilmHero } from '@/components/FilmHero';
 import { FilmInfo } from '@/components/FilmInfo';
+import Footer from '@/components/Footer';
+import Header from '@/components/Header';
 import { MoreLikeThis } from '@/components/MoreLikeThis';
 
 interface FilmPageProps {
@@ -13,6 +15,7 @@ export default function FilmPage({ params }: FilmPageProps): JSX.Element {
 
   return (
     <>
+      <Header />
       <section className="film-card film-card--full">
         <FilmHero id={id} />
         <FilmInfo />
@@ -21,6 +24,7 @@ export default function FilmPage({ params }: FilmPageProps): JSX.Element {
       <div className="page-content">
         <MoreLikeThis />
       </div>
+      <Footer />
     </>
   );
 }
