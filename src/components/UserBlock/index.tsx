@@ -29,7 +29,7 @@ export default function UserBlock({
         </>
       ) : (
         <li className="user-block__item">
-          <Link href="/login" className="user-block__link">
+          <Link href={'/login'} className="user-block__link">
             Sign in
           </Link>
         </li>

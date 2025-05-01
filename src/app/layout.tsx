@@ -3,8 +3,6 @@ import './styles/main.css';
 import type { Metadata } from 'next';
 import { JSX } from 'react';
 
-import Footer from '@/components/Footer';
-import Header from '@/components/Header';
 import SvgSprite from '@/components/SvgSprite';
 
 export const metadata: Metadata = {
@@ -30,9 +28,7 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <SvgSprite />
-        <Header />
         <main>{children}</main>
-        <Footer />
       </body>
     </html>
   );
