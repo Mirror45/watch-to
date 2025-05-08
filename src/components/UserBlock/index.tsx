@@ -1,17 +1,26 @@
+'use client';
+
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
-interface UserBlockProps {
-  isAuth: boolean;
-  name?: string;
-  avatarUrl?: string;
-}
+import { useAppDispatch, useAppSelector } from '@/store/hooks';
+import { logoutUser } from '@/store/slices/auth';
 
-export default function UserBlock({
-  isAuth,
-  name = 'User',
-  avatarUrl = 'img/avatar.jpg',
-}: UserBlockProps) {
+export default function UserBlock() {
+  const dispatch = useAppDispatch();
+  const router = useRouter();
+  const { user } = useAppSelector((state) => state.auth);
+
+  const handleLogout = async () => {
+    await dispatch(logoutUser());
+    router.push('/login');
+  };
+
+  const isAuth = Boolean(user);
+  const name = user?.name || 'User';
+  const avatarUrl = 'img/avatar.jpg';
+
   return (
     <ul className="user-block">
       {isAuth ? (
@@ -22,14 +31,14 @@ export default function UserBlock({
             </div>
           </li>
           <li className="user-block__item">
-            <a href="#" className="user-block__link">
+            <a href="#" className="user-block__link" onClick={handleLogout}>
               Sign out
             </a>
           </li>
         </>
       ) : (
         <li className="user-block__item">
-          <Link href={'/login'} className="user-block__link">
+          <Link href="/login" className="user-block__link">
             Sign in
           </Link>
         </li>

@@ -1,9 +1,10 @@
 import './styles/main.css';
 
 import type { Metadata } from 'next';
-import { JSX } from 'react';
+import { JSX, ReactNode } from 'react';
 
 import SvgSprite from '@/components/SvgSprite';
+import StoreProvider from '@/providers/StoreProvider';
 
 export const metadata: Metadata = {
   title: 'What to Watch — Next Gen Online Cinema',
@@ -19,16 +20,14 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>): JSX.Element {
+export default function RootLayout({ children }: { children: ReactNode }): JSX.Element {
   return (
     <html lang="en">
       <body>
         <SvgSprite />
-        <main>{children}</main>
+        <StoreProvider>
+          <main>{children}</main>
+        </StoreProvider>
       </body>
     </html>
   );

@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { JSX } from 'react';
 
-import UserBlock from '../UserBlock';
+import UserBlock from '@/components/UserBlock';
 
 interface HeaderProps {
   pageTitle?: string;
@@ -46,7 +46,7 @@ export default function Header({
           </nav>
         )}
 
-        {showUserBlock && <UserBlock isAuth={false} />}
+        {showUserBlock && <UserBlock />}
       </div>
     </header>
   );
