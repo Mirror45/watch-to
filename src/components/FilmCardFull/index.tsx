@@ -1,7 +1,7 @@
 import { JSX } from 'react';
 
-import { Background } from './Background';
-import { Poster } from './Poster';
+import { Background } from '@/components/FilmCardFull/Background';
+import { Poster } from '@/components/FilmCardFull/Poster';
 
 export function FilmCardFull(): JSX.Element {
   return (

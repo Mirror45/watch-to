@@ -1,7 +1,7 @@
 import { JSX } from 'react';
 
-import { RatingStars } from './RatingStars';
-import { ReviewTextarea } from './ReviewTextarea';
+import { RatingStars } from '@/components/AddReviewForm/RatingStars';
+import { ReviewTextarea } from '@/components/AddReviewForm/ReviewTextarea';
 
 export function AddReviewForm(): JSX.Element {
   return (

@@ -11,7 +11,7 @@ export default function FilmLayout({ children }: FilmLayoutProps): JSX.Element {
   return (
     <>
       <Header pageTitle="Sign In" showBreadcrumbs={false} showUserBlock={false} />
-      <main>{children}</main>
+      <main className="user-page">{children}</main>
       <Footer />
     </>
   );
