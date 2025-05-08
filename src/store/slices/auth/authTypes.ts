@@ -2,7 +2,7 @@ export interface AuthInfo {
   token: string;
   email: string;
   name: string;
-  avatarUrl?: string;
+  avatar_Url?: string;
 }
 
 export interface LoginPayload {
