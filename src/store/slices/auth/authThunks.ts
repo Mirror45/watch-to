@@ -1,7 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import axios, { AxiosError } from 'axios';
 
-import { api } from '@/utils/axios';
+import { api } from '@/utils/api';
+import { handleError } from '@/utils/handleError';
+import { getToken, removeToken, setToken } from '@/utils/token';
 
 import { AuthInfo, LoginPayload } from './authTypes';
 
@@ -9,14 +10,11 @@ export const loginUser = createAsyncThunk<AuthInfo, LoginPayload, { rejectValue:
   'auth/loginUser',
   async ({ email, password }, thunkAPI) => {
     try {
-      const response = await api.post<AuthInfo>('/login', { email, password });
-      localStorage.setItem('token', response.data.token);
-      return response.data;
-    } catch (error: unknown) {
-      if (axios.isAxiosError(error)) {
-        const err = error as AxiosError<{ error: string }>;
-        return thunkAPI.rejectWithValue(err.response?.data?.error || 'Login failed');
-      }
+      const { data } = await api.post<AuthInfo>('/login', { email, password });
+      setToken(data.token);
+      return data;
+    } catch (error) {
+      handleError(error, 'Login failed');
       return thunkAPI.rejectWithValue('Login failed');
     }
   },
@@ -25,13 +23,14 @@ export const loginUser = createAsyncThunk<AuthInfo, LoginPayload, { rejectValue:
 export const restoreSession = createAsyncThunk<AuthInfo, void, { rejectValue: string }>(
   'auth/restoreSession',
   async (_, thunkAPI) => {
-    const token = typeof window !== 'undefined' ? localStorage.getItem('token') : null;
+    const token = getToken();
     if (!token) return thunkAPI.rejectWithValue('No token found');
 
     try {
-      const response = await api.get<AuthInfo>('/login');
-      return { ...response.data, token };
-    } catch {
+      const { data } = await api.get<AuthInfo>('/login');
+      return { ...data, token };
+    } catch (error) {
+      handleError(error, 'Session restore failed');
       return thunkAPI.rejectWithValue('Session restore failed');
     }
   },
@@ -42,8 +41,9 @@ export const logoutUser = createAsyncThunk<void, void, { rejectValue: string }>(
   async (_, thunkAPI) => {
     try {
       await api.delete('/logout');
-      localStorage.removeItem('token');
-    } catch {
+      removeToken();
+    } catch (error) {
+      handleError(error, 'Logout failed');
       return thunkAPI.rejectWithValue('Logout failed');
     }
   },
