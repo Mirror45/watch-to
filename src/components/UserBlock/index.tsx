@@ -19,7 +19,7 @@ export default function UserBlock() {
 
   const isAuth = Boolean(user);
   const name = user?.name || 'User';
-  const avatarUrl = 'img/avatar.jpg';
+  const avatarUrl = user?.avatar_Url || 'img/avatar.jpg';
 
   return (
     <ul className="user-block">
