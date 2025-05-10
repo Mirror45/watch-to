@@ -2,11 +2,11 @@ export interface Film {
   id: number;
   name: string;
   poster_image: string;
-  preview_image: string;
+  previewImage: string;
   background_image: string;
   background_color: string;
   video_link: string;
-  preview_video_link: string;
+  previewVideoLink: string;
   description: string;
   rating: number;
   scores_count: number;

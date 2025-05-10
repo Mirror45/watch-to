@@ -1,7 +1,9 @@
-import type { NextConfig } from "next";
+import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  images: {
+    domains: ['16.design.htmlacademy.pro'], // добавляем домен
+  },
 };
 
 export default nextConfig;

@@ -1,25 +1,45 @@
+'use client';
+
 import Image from 'next/image';
 import Link from 'next/link';
-import { JSX } from 'react';
+import { JSX, useState } from 'react';
+
+import { Film } from '@/types/film';
 
 interface FilmCardProps {
-  id: string;
-  title: string;
-  image: string;
+  film: Film;
 }
 
-export function FilmCard({ id, title, image }: FilmCardProps): JSX.Element {
+export function FilmCard({ film }: FilmCardProps): JSX.Element {
+  const [isHovered, setIsHovered] = useState(false);
+
   return (
-    <article className="small-film-card catalog__films-card">
-      <Link href={`/films/${id}`}>
+    <article
+      className="small-film-card catalog__films-card"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      <Link href={`/films/${film.id}`}>
         <div className="small-film-card__image">
-          <Image src={image} alt={title} width={280} height={175} />
+          {isHovered ? (
+            <video
+              src={film.previewVideoLink}
+              width={280}
+              height={175}
+              autoPlay
+              muted
+              loop
+              playsInline
+            />
+          ) : (
+            <Image src={film.previewImage} alt={film.name} width={280} height={175} />
+          )}
         </div>
       </Link>
 
       <h3 className="small-film-card__title">
-        <Link href={`/films/${id}`} className="small-film-card__link">
-          {title}
+        <Link href={`/films/${film.id}`} className="small-film-card__link">
+          {film.name}
         </Link>
       </h3>
     </article>
