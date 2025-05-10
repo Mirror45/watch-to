@@ -3,7 +3,7 @@ import { toast } from 'react-toastify';
 
 import { getToken } from './token';
 
-const API_URL = 'https://13.design.htmlacademy.pro/wtw';
+const API_URL = 'https://16.design.htmlacademy.pro/wtw';
 
 export const createAPI = (): AxiosInstance => {
   const api = axios.create({

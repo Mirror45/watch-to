@@ -9,6 +9,7 @@ export const fetchFilms = createAsyncThunk<Film[], void, { rejectValue: string }
   async (_, thunkAPI) => {
     try {
       const { data } = await api.get<Film[]>('/films');
+      console.log('FILMS FROM API:', data);
       return data;
     } catch (error) {
       handleError(error, 'Failed to load films');
