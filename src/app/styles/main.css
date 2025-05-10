@@ -1360,6 +1360,7 @@ main {
 }
 
 .user-block__avatar {
+  display: block;
   width: 63px;
   height: 63px;
   overflow: hidden;

@@ -26,9 +26,9 @@ export default function UserBlock() {
       {isAuth ? (
         <>
           <li className="user-block__item">
-            <div className="user-block__avatar" title={name}>
+            <Link href="/mylist" className="user-block__avatar" title={name}>
               <Image src={`/${avatarUrl}`} alt={`${name} avatar`} width={63} height={63} />
-            </div>
+            </Link>
           </li>
           <li className="user-block__item">
             <a href="#" className="user-block__link" onClick={handleLogout}>
