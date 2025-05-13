@@ -9,7 +9,6 @@ export const fetchFilms = createAsyncThunk<Film[], void, { rejectValue: string }
   async (_, thunkAPI) => {
     try {
       const { data } = await api.get<Film[]>('/films');
-      console.log('FILMS FROM API:', data);
       return data;
     } catch (error) {
       handleError(error, 'Failed to load films');
@@ -18,7 +17,7 @@ export const fetchFilms = createAsyncThunk<Film[], void, { rejectValue: string }
   },
 );
 
-export const fetchFilmById = createAsyncThunk<Film, { id: number }, { rejectValue: string }>(
+export const fetchFilmById = createAsyncThunk<Film, { id: string }, { rejectValue: string }>(
   'films/fetchFilmById',
   async ({ id }, thunkAPI) => {
     try {
@@ -31,7 +30,7 @@ export const fetchFilmById = createAsyncThunk<Film, { id: number }, { rejectValu
   },
 );
 
-export const fetchSimilarFilms = createAsyncThunk<Film[], { id: number }, { rejectValue: string }>(
+export const fetchSimilarFilms = createAsyncThunk<Film[], { id: string }, { rejectValue: string }>(
   'films/fetchSimilarFilms',
   async ({ id }, thunkAPI) => {
     try {

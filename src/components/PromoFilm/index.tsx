@@ -1,13 +1,33 @@
-import Image from 'next/image';
-import { JSX } from 'react';
+'use client';
 
-export function PromoFilm(): JSX.Element {
+import Image from 'next/image';
+import { JSX, memo } from 'react';
+
+import { Loading } from '@/components/Loading';
+import { useAppSelector } from '@/store/hooks';
+import { selectPromo } from '@/store/selectors/promo/promo';
+
+import { PromoButtons } from './PromoButtons';
+
+export const PromoFilm = memo((): JSX.Element => {
+  const { data: film, isLoading } = useAppSelector(selectPromo);
+
+  if (isLoading || !film) {
+    return (
+      <section className="film-card">
+        <div className="film-card__bg">
+          <Loading />
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section className="film-card">
       <div className="film-card__bg" style={{ height: '475px', width: '100%' }}>
         <Image
-          src="/img/bg-the-grand-budapest-hotel.jpg"
-          alt="The Grand Budapest Hotel"
+          src={film.backgroundImage}
+          alt={film.name}
           fill
           style={{
             objectFit: 'cover',
@@ -21,38 +41,22 @@ export function PromoFilm(): JSX.Element {
       <div className="film-card__wrap">
         <div className="film-card__info">
           <div className="film-card__poster">
-            <Image
-              src="/img/the-grand-budapest-hotel-poster.jpg"
-              alt="The Grand Budapest Hotel poster"
-              width="218"
-              height="327"
-            />
+            <Image src={film.posterImage} alt={`${film.name} poster`} width="218" height="327" />
           </div>
 
           <div className="film-card__desc">
-            <h2 className="film-card__title">The Grand Budapest Hotel</h2>
+            <h2 className="film-card__title">{film.name}</h2>
             <p className="film-card__meta">
-              <span className="film-card__genre">Drama</span>
-              <span className="film-card__year">2014</span>
+              <span className="film-card__genre">{film.genre}</span>
+              <span className="film-card__year">{film.released}</span>
             </p>
 
-            <div className="film-card__buttons">
-              <button className="btn btn--play film-card__button" type="button">
-                <svg viewBox="0 0 19 19" width="19" height="19">
-                  <use xlinkHref="#play-s" />
-                </svg>
-                <span>Play</span>
-              </button>
-              <button className="btn btn--list film-card__button" type="button">
-                <svg viewBox="0 0 19 20" width="19" height="20">
-                  <use xlinkHref="#add" />
-                </svg>
-                <span>My list</span>
-              </button>
-            </div>
+            <PromoButtons />
           </div>
         </div>
       </div>
     </section>
   );
-}
+});
+
+PromoFilm.displayName = 'PromoFilm';
