@@ -1,19 +1,19 @@
 export interface Film {
-  id: number;
+  id: string;
   name: string;
-  poster_image: string;
+  posterImage: string;
   previewImage: string;
-  background_image: string;
-  background_color: string;
-  video_link: string;
+  backgroundImage: string;
+  backgroundColor: string;
+  videoLink: string;
   previewVideoLink: string;
   description: string;
   rating: number;
-  scores_count: number;
+  scoresCount: number;
   director: string;
   starring: string[];
-  run_time: number;
+  runTime: number;
   genre: string;
   released: number;
-  is_favorite: boolean;
+  isFavorite: boolean;
 }

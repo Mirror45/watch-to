@@ -8,12 +8,14 @@ import { PromoFilm } from '@/components/PromoFilm';
 import { ShowMoreButton } from '@/components/ShowMoreButton';
 import { useAppDispatch } from '@/store/hooks';
 import { fetchFilms } from '@/store/slices/films';
+import { fetchPromoFilm } from '@/store/slices/promo';
 
 export default function HomePage(): JSX.Element {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(fetchFilms());
+    dispatch(fetchPromoFilm());
   }, [dispatch]);
 
   return (
