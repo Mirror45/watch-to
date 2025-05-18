@@ -3,24 +3,27 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { fetchFilms } from './filmThunks';
 import { FilmsState } from './filmTypes';
 
+const SLICE_NAME_FILMS = 'films';
+const INITIAL_SHOWN_COUNT = 8;
+
 const initialState: FilmsState = {
   all: [],
   isLoading: false,
   error: null,
   selectedGenre: 'All genres',
-  shownCount: 8,
+  shownCount: INITIAL_SHOWN_COUNT,
 };
 
 const filmsSlice = createSlice({
-  name: 'films',
+  name: SLICE_NAME_FILMS,
   initialState,
   reducers: {
-    setGenre(state, action: PayloadAction<string>) {
+    setGenre: (state, action: PayloadAction<string>) => {
       state.selectedGenre = action.payload;
-      state.shownCount = 8;
+      state.shownCount = INITIAL_SHOWN_COUNT;
     },
-    showMore(state) {
-      state.shownCount += 8;
+    showMore: (state) => {
+      state.shownCount += INITIAL_SHOWN_COUNT;
     },
   },
   extraReducers: (builder) => {
@@ -35,7 +38,7 @@ const filmsSlice = createSlice({
       })
       .addCase(fetchFilms.rejected, (state, action) => {
         state.isLoading = false;
-        state.error = action.payload ?? 'Unknown error';
+        state.error = typeof action.payload === 'string' ? action.payload : 'Failed to load films';
       });
   },
 });

@@ -3,6 +3,8 @@ import { createSlice } from '@reduxjs/toolkit';
 import { fetchPromoFilm } from './promoThunks';
 import { PromoState } from './promoTypes';
 
+const SLICE_NAME_PROMO = 'promo';
+
 const initialState: PromoState = {
   data: null,
   isLoading: false,
@@ -10,7 +12,7 @@ const initialState: PromoState = {
 };
 
 const promoSlice = createSlice({
-  name: 'promo',
+  name: SLICE_NAME_PROMO,
   initialState,
   reducers: {},
   extraReducers: (builder) => {
@@ -25,7 +27,8 @@ const promoSlice = createSlice({
       })
       .addCase(fetchPromoFilm.rejected, (state, action) => {
         state.isLoading = false;
-        state.error = action.payload ?? 'Unknown error';
+        state.error =
+          typeof action.payload === 'string' ? action.payload : 'Failed to load promo film';
       });
   },
 });
