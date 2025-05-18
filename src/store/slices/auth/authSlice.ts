@@ -3,6 +3,8 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { loginUser, logoutUser, restoreSession } from './authThunks';
 import { AuthInfo, AuthState } from './authTypes';
 
+const SLICE_NAME_AUTH = 'auth';
+
 const initialState: AuthState = {
   user: null,
   token: null,
@@ -11,7 +13,7 @@ const initialState: AuthState = {
 };
 
 const authSlice = createSlice({
-  name: 'auth',
+  name: SLICE_NAME_AUTH,
   initialState,
   reducers: {},
   extraReducers: (builder) => {
@@ -27,7 +29,7 @@ const authSlice = createSlice({
       })
       .addCase(loginUser.rejected, (state, action) => {
         state.status = 'failed';
-        state.error = action.payload || 'Login failed';
+        state.error = typeof action.payload === 'string' ? action.payload : 'Login failed';
       })
       .addCase(restoreSession.fulfilled, (state, action: PayloadAction<AuthInfo>) => {
         state.status = 'succeeded';
@@ -37,12 +39,7 @@ const authSlice = createSlice({
       .addCase(restoreSession.rejected, (state) => {
         state.status = 'idle';
       })
-      .addCase(logoutUser.fulfilled, (state) => {
-        state.user = null;
-        state.token = null;
-        state.status = 'idle';
-        state.error = null;
-      });
+      .addCase(logoutUser.fulfilled, () => initialState);
   },
 });
 
