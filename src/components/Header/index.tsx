@@ -22,7 +22,7 @@ export default function Header({
     <header className="page-header user-page__head">
       <div className="page-header__container">
         <div className="logo">
-          <Link href="/" className="logo__link">
+          <Link href="/" className="logo__link" aria-label="Homepage">
             <span className="logo__letter logo__letter--1">W</span>
             <span className="logo__letter logo__letter--2">T</span>
             <span className="logo__letter logo__letter--3">W</span>
@@ -32,7 +32,7 @@ export default function Header({
         {pageTitle && <h1 className="page-title user-page__title">{pageTitle}</h1>}
 
         {showBreadcrumbs && filmTitle && filmId && (
-          <nav className="breadcrumbs">
+          <nav className="breadcrumbs" aria-label="Breadcrumb">
             <ul className="breadcrumbs__list">
               <li className="breadcrumbs__item">
                 <Link href={`/films/${filmId}`} className="breadcrumbs__link">
@@ -40,7 +40,9 @@ export default function Header({
                 </Link>
               </li>
               <li className="breadcrumbs__item">
-                <span className="breadcrumbs__link">{pageTitle}</span>
+                <span className="breadcrumbs__link" aria-current="page">
+                  {pageTitle}
+                </span>
               </li>
             </ul>
           </nav>

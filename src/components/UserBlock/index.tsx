@@ -13,8 +13,12 @@ export default function UserBlock() {
   const { user } = useAppSelector((state) => state.auth);
 
   const handleLogout = async () => {
-    await dispatch(logoutUser());
-    router.push('/login');
+    try {
+      await dispatch(logoutUser());
+      router.push('/login');
+    } catch (error) {
+      console.error('Logout failed', error);
+    }
   };
 
   const isAuth = Boolean(user);
@@ -31,9 +35,14 @@ export default function UserBlock() {
             </Link>
           </li>
           <li className="user-block__item">
-            <a href="#" className="user-block__link" onClick={handleLogout}>
+            <button
+              type="button"
+              className="user-block__link"
+              onClick={handleLogout}
+              aria-label="Sign out"
+            >
               Sign out
-            </a>
+            </button>
           </li>
         </>
       ) : (
